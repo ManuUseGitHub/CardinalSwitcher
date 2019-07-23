@@ -1,0 +1,73 @@
+<html class="" lang="en"><head></script><meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+</head><body>
+<div class="row">
+<div class="col-sm-4">
+<input id="from1" type="text" placeholder="ex : top" value='top'><br>
+<input id="from2" placeholder="ex : right" type="text">
+<br>
+</div>
+<div class="col-sm-8">
+<h2 class="wrong">
+<span id="input"></span>has <span id="guess"></span> as opposite direction
+<br>by 90 degrees unclockwise, you will have <span id="guess-non-clock"></span>
+<br>by 90 degrees clockwise , you will have <span id="guess-clock"></span>
+</h2>
+</div>
+</div>
+
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src='../CardinalSwitcher.min.js'></script>
+<script id="rendered-js">
+          
+
+
+// Show case here ----------------------------------------------------------
+var trigger = function(){
+	var options = {
+      codeOnly: false,
+      type: 'opposite',
+      from1: $('#from1').val(),
+      from2: $('#from2').val() };
+
+    var opposite = JSON.parse(JSON.stringify(options));
+    opposite.type = 'opposite';
+
+    var clockwise = JSON.parse(JSON.stringify(options));
+    clockwise.type = 'clock';
+
+    var nonClockwise = JSON.parse(JSON.stringify(options));
+    nonClockwise.type = 'non-clock';
+
+    try {
+      var guessOpp = Cardinal.getNextDirection(opposite);
+      var guessClc = Cardinal.getNextDirection(clockwise);
+      var guessNClc = Cardinal.getNextDirection(nonClockwise);
+
+      $('#input').html(options.from1 + ' ' + options.from2 + ' ');
+      $('#guess').html(guessOpp);
+      $('#guess-clock').html(guessClc);
+      $('#guess-non-clock').html(guessNClc);
+
+      $('h2').removeClass('wrong');
+    }
+    catch (e) {
+      $('h2').addClass('wrong');
+      $('#input').html('...');
+      $('#guess').html('...');
+    }
+  };
+
+
+$("#from1, #from2").each(function () {
+
+  $(this).keyup(function () {
+  	trigger();  
+  });
+});
+	trigger(); 
+        </script>
+	</body>
+</html>
