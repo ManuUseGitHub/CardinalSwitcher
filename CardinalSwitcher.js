@@ -1,6 +1,11 @@
 'use strict';
 
 var Cardinal = function(){
+  
+  /**
+  * All credits for the base code of the matrix rotation there : 
+  * [HTTP] http://jsfiddle.net/FloydPink/0fg4rLf9
+  */
   class MatrixNRotator{
     // https://leetcode.com/discuss/20589/a-common-method-to-rotate-the-image
     /**
