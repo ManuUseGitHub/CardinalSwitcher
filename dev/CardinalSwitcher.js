@@ -100,7 +100,7 @@ var Cardinal = function(){
       	return this.normalizeDirection(direction.toUpperCase())	
       }
       else
-      	return return direction;
+      	return direction;
     }
 
     normalizeOpitons(options){
