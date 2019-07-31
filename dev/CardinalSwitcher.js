@@ -83,7 +83,7 @@ var Cardinal = function(){
       return direction;
     }
 
-    getDirectionCode(cls){
+    getDirectionCode(cls,isNormalizedDirection = true){
       var direction = '';
       var filters = ['.*(t)op.*','.*(b)ottom.*','.*(l)eft.*','.*(r)ight.*'];
 
@@ -91,12 +91,16 @@ var Cardinal = function(){
         var m;
         if(m = new RegExp(e).exec(cls)){
           if(!/(.)\1$/.test(direction+m[1])){
-            direction+=(m[1]).toUpperCase()  
+            direction+=(m[1])  
           }
         }
       })
-      // narmalizing the resulted direction (to have maximum 2 characters for the direction)
-      return this.normalizeDirection(direction)
+      if(isNormalizedDirection){
+      	// narmalizing the resulted direction (to have maximum 2 characters for the direction)
+      	return this.normalizeDirection(direction.toUpperCase())	
+      }
+      else
+      	return return direction;
     }
 
     normalizeOpitons(options){
